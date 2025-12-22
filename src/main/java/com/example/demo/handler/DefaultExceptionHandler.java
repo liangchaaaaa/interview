@@ -3,6 +3,7 @@ package com.example.demo.handler;
 import com.example.demo.util.R;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.exception.ExceptionUtils;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @Slf4j
 @RestController
 @RestControllerAdvice
+@MapperScan("com.example.demo.dal.mapper")
 public class DefaultExceptionHandler {
   @ExceptionHandler({Exception.class})
   R<String> handleException(Exception e) {
