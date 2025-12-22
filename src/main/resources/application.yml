@@ -8,9 +8,9 @@ spring:
 mybatis-flex:
   datasource:
     master:
-      url: jdbc:mysql://127.0.0.1:8066/interview?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+      url: jdbc:mysql://127.0.0.1:3306/interview?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
       username: root
-      password: LemontreeSaas
+      password: 15915255868
 
 jetcache:
   statIntervalMinutes: 15
