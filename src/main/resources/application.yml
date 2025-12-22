@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: demo
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+mybatis-flex:
+  datasource:
+    master:
+      url: jdbc:mysql://127.0.0.1:8066/interview?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+      username: root
+      password: LemontreeSaas
+
+jetcache:
+  statIntervalMinutes: 15
+  areaInCacheName: false
+  hidePackages: com.alibaba
+  local:
+    default:
+      type: caffeine
+      limit: 100
+      keyConvertor: fastjson2 #?????fastjson/jackson
+      expireAfterWriteInMillis: 100000
+    otherArea:
+      type: linkedhashmap
+      limit: 100
+      keyConvertor: none
+      expireAfterWriteInMillis: 100000
+  remote:
+    default:
+      type: redisson
+      keyConvertor: fastjson2 #?????fastjson/jackson
+      # broadcastChannel: projectA
+      valueEncoder: java #?????kryo/kryo5
+      valueDecoder: java #?????kryo/kryo5
