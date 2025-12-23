@@ -90,7 +90,6 @@
             <version>${mapstruct.version}</version>
         </dependency>
 
-
         <dependency>
             <groupId>org.redisson</groupId>
             <artifactId>redisson-spring-boot-starter</artifactId>
@@ -99,8 +98,24 @@
 
         <dependency>
             <groupId>com.alicp.jetcache</groupId>
-            <artifactId>jetcache-starter-redisson</artifactId>
-            <version>2.7.6</version>
+            <artifactId>jetcache-starter-redis</artifactId>
+            <version>2.7.4</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alicp.jetcache</groupId>
+            <artifactId>jetcache-anno</artifactId>
+            <version>2.7.4</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alicp.jetcache</groupId>
+            <artifactId>jetcache-redisson</artifactId>
+            <version>2.7.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.ben-manes.caffeine</groupId>
+            <artifactId>caffeine</artifactId>
+            <version>3.1.6</version>
         </dependency>
 
         <!--阿里巴巴的开源JSON解析库-->
