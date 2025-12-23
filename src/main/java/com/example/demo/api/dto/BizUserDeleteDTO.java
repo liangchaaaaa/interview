@@ -1,8 +1,9 @@
 package com.example.demo.api.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serial;
 import java.io.Serializable;
-import java.util.*;
+import java.util.List;
 
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
@@ -13,7 +14,6 @@ public class BizUserDeleteDTO implements Serializable {
 
   @Serial private static final long serialVersionUID = 1L;
 
-  // TODO 补齐代码
   @NotEmpty(message = "lids不能为空")
-  public List<Long> lids;
+  private List<Long> lids;
 }

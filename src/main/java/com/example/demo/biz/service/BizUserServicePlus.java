@@ -1,3 +1,11 @@
+/*
+ * @Author: liangchaaaaa git
+ * @Date: 2025-12-22 21:58:16
+ * @LastEditors: liangchaaaaa git
+ * @LastEditTime: 2025-12-23 14:09:17
+ * @FilePath: \origin\src\main\java\com\example\demo\biz\service\BizUserServicePlus.java
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 package com.example.demo.biz.service;
 
 import com.alicp.jetcache.CacheManager;
@@ -30,14 +38,19 @@ public class BizUserServicePlus {
       return null;
     }
     QueryWrapper wrapper = new QueryWrapper();
-    wrapper.where("lid = ?", request.getLid());
+    wrapper.where("lid = ?", request.getLid())
+            .and(BizUser::getDeleted).eq(0);
+
     return mapper.selectOneByQuery(wrapper);
   }
 
   @Transactional(propagation = Propagation.SUPPORTS, rollbackFor = Exception.class)
   public Page<BizUser> list(BizUserQueryDTO request) {
-    Page<BizUser> page = new Page<>(request.current, request.pageSize);
-    return mapper.selectPage(page);
+    QueryWrapper queryWrapper = QueryWrapper.create()
+            .select()
+            .where(BizUser::getDeleted).eq(0)  // 只查询未逻辑删除的
+            .orderBy(BizUser::getCreatedTime, false);  // 按创建时间倒序
+    return mapper.paginate(request.getCurrent(), request.getPageSize(), queryWrapper);
   }
 
   @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
@@ -61,7 +74,7 @@ public class BizUserServicePlus {
 
   @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
   public void delete(BizUserDeleteDTO request) {
-    if (request.lids == null || request.lids.isEmpty()) {
+    if (request.getLids() == null || request.getLids().isEmpty()) {
       return;
     }
     Cache<Object, Object> cache = null;
@@ -69,7 +82,7 @@ public class BizUserServicePlus {
       cache = cacheManager.getCache(KEY_IN_REDIS);
     } catch (Exception ignore) {
     }
-    for (Long lid : request.lids) {
+    for (Long lid : request.getLids()) {
       QueryWrapper wrapper = new QueryWrapper();
       wrapper.where("lid = ?", lid);
       BizUser update = new BizUser();

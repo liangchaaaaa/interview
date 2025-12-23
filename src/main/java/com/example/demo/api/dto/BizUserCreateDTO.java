@@ -1,5 +1,6 @@
 package com.example.demo.api.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serial;
 import java.io.Serializable;
 import jakarta.validation.constraints.NotBlank;
@@ -11,10 +12,7 @@ public class BizUserCreateDTO implements Serializable {
 
   @Serial private static final long serialVersionUID = 1L;
 
-  // TODO 补齐代码
-  public Long lid;
-
   @NotBlank(message = "name不能为空")
-  public String name;
+  private String name;
 
 }

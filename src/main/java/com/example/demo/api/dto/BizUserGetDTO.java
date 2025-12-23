@@ -1,5 +1,6 @@
 package com.example.demo.api.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serial;
 import java.io.Serializable;
 
@@ -12,7 +13,6 @@ public class BizUserGetDTO implements Serializable {
 
   @Serial private static final long serialVersionUID = 1L;
 
-  // TODO 补齐代码
   @NotNull(message = "lid 不能为空")
-  public Long lid;
+  private Long lid;
 }

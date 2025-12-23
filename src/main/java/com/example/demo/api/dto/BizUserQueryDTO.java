@@ -14,15 +14,14 @@ public class BizUserQueryDTO implements Serializable {
 
   @Serial private static final long serialVersionUID = 1L;
 
-  // TODO 补齐代码
   @Schema(title = "第几页")
   @NotNull(message = "current 不能为空")
-  @Min(value = 0, message = "current 不能小于 0")
-  public Long current;
+  @Min(value = 1, message = "current 不能小于 1")
+  private Integer current;
 
   @Schema(title = "页大小")
   @NotNull(message = "pageSize 不能为空")
   @Min(value = 1, message = "pageSize 最小为 1")
   @Max(value = 100, message = "pageSize 最大为 100")
-  public Long pageSize;
+  private Integer pageSize;
 }
